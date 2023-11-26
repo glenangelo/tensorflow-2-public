@@ -11,9 +11,11 @@
             // HINT: Remember that you are trying to build a classifier that 
             // can predict from the data whether the diagnosis is malignant or benign.
             const trainingData = tf.data.csv(trainingUrl, {
-                
-                // YOUR CODE HERE
-                
+                columnConfigs: {
+                    diagnosis: {
+                        isLabel: true
+                    }
+                }
             });
             
             // Convert the training data into arrays in the space below.
@@ -30,9 +32,11 @@
             // HINT: Remember that you are trying to build a classifier that 
             // can predict from the data whether the diagnosis is malignant or benign.
             const testingData = tf.data.csv(testingUrl, {
-                
-                // YOUR CODE HERE
-                
+                columnConfigs: {
+                    diagnosis: {
+                        isLabel: true
+                    }
+                } 
             });
             
             // Convert the testing data into arrays in the space below.
@@ -58,8 +62,8 @@
             // using ReLu activation functions where applicable. For this dataset only a few
             // hidden layers should be enough to get a high accuracy.  
             const model = tf.sequential();
-            
-            // YOUR CODE HERE
+            model.add(tf.layers.dense({inputShape: [numOfFeatures], activation: "relu", units: 35}));
+            model.add(tf.layers.dense({activation:"sigmoid", units: 1}));
 
             
             
